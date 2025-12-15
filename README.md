@@ -2,7 +2,7 @@
 # novatea ![IMG](https://hackatime-badge.hackclub.com/U08RJ1PEM7X/novatea)
 Nova's personal website and blog! \
 <a href="https://notbyai.fyi" target="_blank">
-  <img src="https://raw.githubusercontent.com/aelithron/novatea/refs/heads/main/public/not-by-ai.svg" alt="Developed by a human, not by AI!" style="width: 10%; height: 10%;">
+  <img src="https://raw.githubusercontent.com/aelithron/novatea/refs/heads/main/public/not-by-ai.svg" alt="Developed by a human, not by AI!">
 </a>
 
 ## Features
