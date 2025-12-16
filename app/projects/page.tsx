@@ -1,5 +1,6 @@
 import projectList from "@/utils/projects";
 import { faClipboard, faStar } from "@fortawesome/free-regular-svg-icons";
+import { faCodeBranch, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
@@ -17,6 +18,10 @@ export default function Page() {
           {topProjects.map((project, index) => <div key={index} className="p-3 bg-slate-300 dark:bg-slate-700 rounded-lg">
             <h1 className="text-lg font-semibold">{project.title}</h1>
             <p>{project.description}</p>
+            <div className="grid grid-cols-2 grid-rows-1 text-center mt-2">
+              <a href={project.ghrepo.toString()} target="_blank" className={`hover:text-sky-500 ${!project.link ? "col-span-2" : ""}`}><FontAwesomeIcon icon={faCodeBranch} /> code</a>
+              {project.link && <a href={project.link.toString()} target="_blank" className={`hover:text-sky-500`}><FontAwesomeIcon icon={faLink} /> open</a>}
+            </div>
           </div>)}
         </div>
       </div>}
@@ -26,9 +31,14 @@ export default function Page() {
           {otherProjects.map((project, index) => <div key={index} className="p-3 bg-slate-300 dark:bg-slate-700 rounded-lg">
             <h1 className="text-lg">{project.title}</h1>
             <p>{project.description}</p>
+            <div className="grid grid-cols-2 grid-rows-1 text-center mt-2">
+              <a href={project.ghrepo.toString()} target="_blank" className={`hover:text-sky-500 ${!project.link ? "col-span-2" : ""}`}><FontAwesomeIcon icon={faCodeBranch} /> code</a>
+              {project.link && <a href={project.link.toString()} target="_blank" className={`hover:text-sky-500`}><FontAwesomeIcon icon={faLink} /> open</a>}
+            </div>
           </div>)}
         </div>
       </div>}
+      {projectList().length < 1 && <p>sorry, there aren&apos;t any projects on here right now!</p>}
     </main>
   );
 }
