@@ -4,7 +4,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
-export const metadata: Metadata = { title: "info" }
+export const metadata: Metadata = { title: "accounts" }
 export default function Page() {
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
