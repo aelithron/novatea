@@ -4,11 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import Image from "next/image";
 import { CopyButton } from "./clientui.module";
+import { UniversalStatusWidget } from "./widgets.module";
 
-export const metadata: Metadata = {
-  title: "home ✧ novatea.dev"
-}
-
+export const dynamic = 'force-dynamic';
+export const metadata: Metadata = { title: "home ✧ novatea.dev" };
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16 md:place-content-center items-center">
@@ -28,6 +27,7 @@ export default function Home() {
             <a href="https://reddit.com/novatea0" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faReddit} /></a>
           </div>
         </div>
+        <UniversalStatusWidget email="aelithron@gmail.com" />
       </div>
     </main>
   );
