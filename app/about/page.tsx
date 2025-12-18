@@ -7,9 +7,28 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faAddressCard} /> about nova</h1>
-      <p>an extended bio</p>
-      <div className="mt-2">
-        <p>hi! my name is nova, and i&apos;m a random software dev on the internet :3</p>
+      <p className="mb-2">an extended bio, mostly in list form</p>
+      <p>hi! my name is nova, and i&apos;m a random software dev on the internet :3</p>
+      <p>this won&apos;t have everything, as i&apos;m saving some things for my blog.</p>
+      <div className="flex flex-col gap-2 mt-2">
+        <div>
+          <h2 className="text-xl font-semibold">fun facts about me</h2>
+          <ul className="list-disc list-inside">
+            <li>i&apos;m a minor (teenager)!</li>
+            <li>i am transgender, more specifically transfeminine non-binary.</li>
+            <li>i am omnisexual, with a preference for women and non-binary people. this is under the bi umbrella :3</li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold">things i do</h2>
+          <ul className="list-disc list-inside">
+            <li>i&apos;m a full-stack software developer! this means i can make backends and frontends for all kinds of things (apps, websites, etc.)</li>
+            <li>i&apos;m a member of <a href="https://www.hackclub.com" className="hover:text-sky-500 underline">Hack Club</a>, an online community of teen programmers!</li>
+            <li>i am a creative writer! i write short stories and novellas, and am working on some full length chaptered novels. my focus is mainly original writing, but i make fanfiction on occasion.</li>
+            <li>i like to take photos! my main focuses are nature (namely skies) and people, and i like to take self-portraits. i call myself an amateur photographer, as i&apos;m still learning.</li>
+            <li>i do digital art on occasion. i&apos;m not very good at it, but it&apos;s fun and i am trying to improve!</li>
+          </ul>
+        </div>
       </div>
     </main>
   );
