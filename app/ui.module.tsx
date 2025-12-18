@@ -25,7 +25,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="flex gap-2 md:px-6 p-2 justify-between">
+    <footer className="flex gap-2 md:px-6 p-3 justify-between">
       <a href="https://github.com/aelithron/novatea" target="_blank" className="flex items-center text-slate-500 hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /> <p className="ml-1 underline">source code</p></a>
       <a href="https://notbyai.fyi" target="_blank"><Image src={"./not-by-ai.svg"} width={128} height={128} alt="Developed by a human, not by AI!" /></a>
     </footer>

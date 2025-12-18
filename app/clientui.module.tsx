@@ -1,14 +1,11 @@
 "use client"
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export function CopyButton({ text, icon, message }: { text: string, icon: IconDefinition, message?: string }) {
+export function CopyButton({ children, text, message }: { children: React.ReactNode, text: string, message?: string }) {
   async function copyText() {
     await navigator.clipboard.writeText(text);
-    alert(message ? message : "copied!");
+    alert(message ? `${message} (${text})` : `copied! (${text})`);
   }
   return (
-    <button onClick={copyText} type="button" className="hover:text-sky-500"><FontAwesomeIcon icon={icon} /></button>
+    <button onClick={copyText} type="button" className="hover:text-sky-500">{children}</button>
   );
 }
 export function ClientTime({ date }: { date: Date }) {

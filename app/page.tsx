@@ -22,8 +22,8 @@ export default function Home() {
           <div className="flex gap-2 justify-start text-xl">
             <a href="mailto:nova@novatea.dev" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faEnvelope} /></a>
             <a href="https://github.com/aelithron" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /></a>
-            <CopyButton text="aelithron" icon={faDiscord} message="copied discord username!" />
-            <CopyButton text="novatea.84" icon={faSignalMessenger} message="copied signal username!" />
+            <CopyButton text="aelithron" message="copied discord username!"><FontAwesomeIcon icon={faDiscord} /></CopyButton>
+            <CopyButton text="novatea.84" message="copied signal username!"><FontAwesomeIcon icon={faSignalMessenger} /></CopyButton>
             <a href="https://reddit.com/novatea0" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faReddit} /></a>
           </div>
         </div>
