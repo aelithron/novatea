@@ -4,7 +4,7 @@ import { faCodeBranch, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
-export const metadata: Metadata = { title: "projects" }
+export const metadata: Metadata = { title: "projects" };
 export default function Page() {
   const topProjects = projectList().filter(project => project.spotlighted);
   const otherProjects = projectList().filter(project => !project.spotlighted);
