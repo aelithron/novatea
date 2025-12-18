@@ -1,7 +1,8 @@
+import { ClientTime } from "@/app/clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { eq } from "drizzle-orm";
 import { Metadata } from "next";
@@ -11,22 +12,30 @@ import Markdown from "react-markdown";
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: "blog" };
 export default async function Page({ params }: { params: Promise<{ article: string }> }) {
-  let blogPost = null;
+  let blogPosts = null;
   try {
-    blogPost = await db.select().from(blogTable).where(eq(blogTable.path, (await params).article)).limit(1);
+    //blogPosts = await db.select().from(blogTable).where(eq(blogTable.path, (await params).article)).limit(1);
+    blogPosts = [{ path: "a", title: "Title", blurb: "Post stuff", body: "aaa", publishedAt: new Date(), tags: ["test"], editedAt: null }];
   } catch {}
-  if (!blogPost) return (
+  if (!blogPosts) return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faX} /> Blog post not found!</h1>
       <p>This blog post could not be found.</p>
       <Link href={"/blog"} className="bg-violet-300 dark:bg-violet-600 rounded-xl p-1 mt-2"><FontAwesomeIcon icon={faNewspaper} /> Back to Blog</Link>
     </main>
   );
+  const post = blogPosts[0];
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
-      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> (title)</h1>
+      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> {post.title}</h1>
+      <p className="text-lg italic">{post.blurb}</p>
+      <div className="flex flex-col md:flex-row gap-2 justify-between">
+        <ClientTime date={new Date(post.publishedAt)} />
+        {post.editedAt && <p>edited at <ClientTime date={new Date(post.editedAt)} /></p>}
+        {post.tags && post.tags.map(tag => <p key={tag} className="bg-slate-400 dark:bg-slate-900 rounded-md p-1"><FontAwesomeIcon icon={faTag} /> {tag}</p>)}
+      </div>
       <div className="prose prose-neutral dark:prose-invert">
-        <Markdown>(contents)</Markdown>
+        <Markdown>{post.body}</Markdown>
       </div>
     </main>
   );

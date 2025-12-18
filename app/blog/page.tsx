@@ -22,7 +22,7 @@ async function BlogPosts() {
   let blogPosts = [];
   try {
     //blogPosts = await db.select().from(blogTable);
-    blogPosts = [{ path: "a", title: "Title", blurb: "Post stuff", body: "aaa", publishedAt: new Date(), tags: ["test"], editedAt: null }]
+    blogPosts = [{ path: "a", title: "Title", blurb: "Post stuff", body: "aaa", publishedAt: new Date(), tags: ["test"], editedAt: null }];
   } catch {
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
@@ -35,11 +35,11 @@ async function BlogPosts() {
       {blogPosts.map(post => <div key={post.path} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
         <Link href={`/blog/${post.path}`} className="flex gap-2">
           <div className="flex flex-col">
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-col md:flex-row gap-3 md:items-center">
               <h1 className="text-lg font-semibold">{post.title}</h1>
               <p className="text-slate-500"><FontAwesomeIcon icon={faClock} /> <ClientTime date={post.publishedAt} /></p>
             </div>
-            <p>{post.blurb}</p>
+            <p className="italic">{post.blurb}</p>
           </div>
         </Link>
         <div className="flex gap-1 items-center">
