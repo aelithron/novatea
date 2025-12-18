@@ -60,7 +60,7 @@ export default function Page() {
           </ul>
           <h3 className="text-lg">shows:</h3>
           <ul className="list-disc list-inside">
-            <li>Oshi no Ko</li> {/* todo: add a link to a blog post about it, or a watch link if i don't make one */}
+            <li><a href="https://www.imdb.com/title/tt21030032" target="_blank" className="underline hover:text-sky-500">Oshi no Ko</a></li>
             <li><a href="https://youtube.com/playlist?list=PLHovnlOusNLiJz3sm0d5i2Evwa2LDLdrg" target="_blank" className="underline hover:text-sky-500">Murder Drones</a></li>
           </ul>
         </div>
