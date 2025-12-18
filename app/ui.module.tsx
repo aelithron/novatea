@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHome, faNewspaper, faClipboard, faComment, faAddressCard } from "@fortawesome/free-regular-svg-icons";
+import Image from "next/image";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export function Header() {
   return (
@@ -10,13 +12,22 @@ export function Header() {
         <div className="flex gap-4 justify-center md:justify-start">
           <Link href={"/"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faHome} /> home</Link>
           <Link href={"/blog"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faNewspaper} /> blog</Link>
-          <Link href={"/projects"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faClipboard} /> projects</Link>
+          <Link href={"/about"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faAddressCard} /> about</Link>
         </div>
         <div className="flex gap-4 justify-center md:justify-start">
-          <Link href={"/about"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faAddressCard} /> about</Link>
+          <Link href={"/projects"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faClipboard} /> projects</Link>
           <Link href={"/accounts"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faComment} /> accounts</Link>
         </div>
       </div>
     </header>
   );
+}
+
+export function Footer() {
+  return (
+    <footer className="flex gap-2 md:px-6 p-2 justify-between">
+      <a href="https://github.com/aelithron/novatea" target="_blank" className="flex items-center text-slate-500 hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /> <p className="ml-1 underline">source code</p></a>
+      <a href="https://notbyai.fyi" target="_blank"><Image src={"./not-by-ai.svg"} width={128} height={128} alt="Developed by a human, not by AI!" /></a>
+    </footer>
+  )
 }

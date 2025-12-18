@@ -3,7 +3,7 @@ import { Quicksand } from "next/font/google";
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import "./globals.css";
-import { Header } from "./ui.module";
+import { Footer, Header } from "./ui.module";
 
 config.autoAddCss = false;
 const quicksand = Quicksand({ weight: "500" });
@@ -20,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`antialiased ${quicksand.className}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

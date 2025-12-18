@@ -1,5 +1,4 @@
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ClientTime } from "./clientui.module";
 
