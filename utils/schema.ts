@@ -7,6 +7,5 @@ export const blogTable = pgTable("blog", {
   body: text().notNull(),
   tags: json().$type<string[]>(),
   publishedAt: date().notNull().defaultNow(),
-  editedAt: date(),
   published: boolean().notNull().default(true)
 });

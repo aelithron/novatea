@@ -30,7 +30,6 @@ export default async function Page({ params }: { params: Promise<{ path: string 
       <p className="text-lg italic">{post.blurb}</p>
       <div className="flex flex-col md:flex-row gap-2 justify-between">
         <ClientTime date={new Date(post.publishedAt)} />
-        {post.editedAt && <p>edited at <ClientTime date={new Date(post.editedAt)} /></p>}
         {post.tags && post.tags.map(tag => <p key={tag} className="bg-slate-400 dark:bg-slate-900 rounded-md p-1"><FontAwesomeIcon icon={faTag} /> {tag}</p>)}
       </div>
       <div className="prose prose-neutral dark:prose-invert">
