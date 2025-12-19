@@ -4,7 +4,7 @@ import { blogTable } from "@/utils/schema";
 import { faNewspaper } from "@fortawesome/free-regular-svg-icons";
 import { faTag, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -14,8 +14,7 @@ export const metadata: Metadata = { title: "blog" };
 export default async function Page({ params }: { params: Promise<{ article: string }> }) {
   let blogPosts = null;
   try {
-    //blogPosts = await db.select().from(blogTable).where(eq(blogTable.path, (await params).article)).limit(1);
-    blogPosts = [{ path: "a", title: "Title", blurb: "Post stuff", body: "aaa", publishedAt: new Date(), tags: ["test"], editedAt: null }];
+    blogPosts = await db.select().from(blogTable).where(and(eq(blogTable.published, true), eq(blogTable.path, (await params).article))).limit(1);
   } catch {}
   if (!blogPosts) return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">

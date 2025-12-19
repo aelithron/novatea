@@ -1,4 +1,4 @@
-import { date, json, pgTable, text } from "drizzle-orm/pg-core";
+import { boolean, date, json, pgTable, text } from "drizzle-orm/pg-core";
 
 export const blogTable = pgTable("blog", {
   path: text().primaryKey().unique(),
@@ -7,5 +7,6 @@ export const blogTable = pgTable("blog", {
   body: text().notNull(),
   tags: json().$type<string[]>(),
   publishedAt: date().notNull().defaultNow(),
-  editedAt: date()
+  editedAt: date(),
+  published: boolean().notNull().default(true)
 });
