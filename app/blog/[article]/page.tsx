@@ -18,9 +18,9 @@ export default async function Page({ params }: { params: Promise<{ article: stri
   } catch {}
   if (!blogPosts) return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
-      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faX} /> Blog post not found!</h1>
-      <p>This blog post could not be found.</p>
-      <Link href={"/blog"} className="bg-violet-300 dark:bg-violet-600 rounded-xl p-1 mt-2"><FontAwesomeIcon icon={faNewspaper} /> Back to Blog</Link>
+      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faX} /> blog post not found!</h1>
+      <p>this blog post could not be found.</p>
+      <Link href={"/blog"} className="bg-violet-300 dark:bg-violet-600 rounded-xl p-1 mt-2"><FontAwesomeIcon icon={faNewspaper} /> back to blog</Link>
     </main>
   );
   const post = blogPosts[0];
