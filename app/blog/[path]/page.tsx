@@ -10,11 +10,11 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: "blog" };
-export default async function Page({ params }: { params: Promise<{ article: string }> }) {
+export const metadata: Metadata = { title: "blog post" };
+export default async function Page({ params }: { params: Promise<{ path: string }> }) {
   let blogPosts = null;
   try {
-    blogPosts = await db.select().from(blogTable).where(and(eq(blogTable.published, true), eq(blogTable.path, (await params).article))).limit(1);
+    blogPosts = await db.select().from(blogTable).where(and(eq(blogTable.published, true), eq(blogTable.path, (await params).path))).limit(1);
   } catch {}
   if (!blogPosts) return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
