@@ -1,12 +1,25 @@
 "use client";
 import { faKey, faSignIn, faUserLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AuthPrompt() {
+  const router = useRouter();
   const [token, setToken] = useState<string>("");
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const res = await fetch("/api/admin/auth", { method: "POST", body: JSON.stringify({ token }) });
+    let body;
+    try {
+      body = await res.json();
+    } catch {
+      alert("unknown error signing in!");
+    }
+    if (body.success) {
+      router.refresh();
+      return;
+    } else alert(`login failed: ${body.message} (${body.error})`);
   }
   return (
     <div className="flex flex-col items-center">
