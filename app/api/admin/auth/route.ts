@@ -17,3 +17,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ success: false, error: "invalid_token", message: "incorrect token!" }, { status: 403 });
   }
 }
+export async function DELETE(): Promise<NextResponse> {
+  const res = new NextResponse();
+  res.cookies.delete("admin_token");
+  return res;
+}
