@@ -22,7 +22,7 @@ export default async function Page() {
 async function BlogPosts() {
   let blogPosts = [];
   try {
-    blogPosts = await db.select().from(blogTable).where(eq(blogTable.published, true));
+    blogPosts = (await db.select().from(blogTable).where(eq(blogTable.published, true))).sort((a, b) => { return b.publishedAt.getTime() - a.publishedAt.getTime() });
   } catch {
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
@@ -38,7 +38,7 @@ async function BlogPosts() {
     );
   }
   return (
-    <div className="mt-2">
+    <div className="flex flex-col gap-3 mt-3">
       {blogPosts.map(post => <div key={post.path} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
         <Link href={`/blog/${post.path}`} className="flex gap-2 w-full">
           <div className="flex flex-col">

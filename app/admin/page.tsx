@@ -29,7 +29,7 @@ export default async function Page() {
 async function BlogAdmin() {
   let blogPosts = [];
   try {
-    blogPosts = await db.select().from(blogTable);
+    blogPosts = (await db.select().from(blogTable)).sort((a, b) => { return b.publishedAt.getTime() - a.publishedAt.getTime() });
   } catch {
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">

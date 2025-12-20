@@ -1,5 +1,6 @@
 "use client";
 import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
@@ -46,7 +47,7 @@ export function CreatePostForm() {
         <label htmlFor="blurb" className="font-semibold">blurb:</label>
         <input id="blurb" type="text" className="bg-slate-300 dark:bg-slate-800 rounded-lg p-1" value={blurb} onChange={(e) => setBlurb(e.target.value)} />
       </div>
-      <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPlus} /> Create</button>
+      <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPlus} /> create</button>
     </form>
   );
 }
@@ -86,6 +87,23 @@ export function EditPostForm({ path, curTitle, curBody, curBlurb, curPublishedAt
     }
     router.refresh();
   }
+  async function deletePost() {
+    const verify = confirm(`are you sure you want to delete this post?\npath: ${path}\ntitle: ${curTitle}`);
+    if (!verify) return;
+    const res = await fetch("/api/admin/blog", { method: "DELETE", body: JSON.stringify({ path }) });
+    let resBody;
+    try {
+      resBody = await res.json();
+    } catch {
+      alert("unknown error while updating the post!");
+      return;
+    }
+    if (resBody.error) {
+      alert(`error updating the post: ${resBody.message} (${resBody.error})`);
+      return;
+    }
+    router.push("/admin");
+  }
   useEffect(() => {
     function checkBeforeClosing(e: BeforeUnloadEvent) { e.preventDefault(); }
     window.addEventListener("beforeunload", checkBeforeClosing);
@@ -105,7 +123,7 @@ export function EditPostForm({ path, curTitle, curBody, curBlurb, curPublishedAt
           <input id="published-at" type="datetime-local" className="bg-slate-300 dark:bg-slate-800 rounded-lg p-1 w-64" value={formatTime(publishedAt)} onChange={(e) => setPublishedAt(new Date(e.target.value))} />
           <div className="flex gap-2 mt-2">
             <label htmlFor="published" className="font-semibold">published?</label>
-            <input id="published" type="checkbox" value={published ? "true" : "false"} onChange={(e) => setPublished(e.target.checked)} />
+            <input id="published" type="checkbox" checked={published} onChange={(e) => setPublished(e.target.checked)} />
           </div>
         </div>
         <div className="flex flex-col gap-1 md:col-span-2">
@@ -119,7 +137,10 @@ export function EditPostForm({ path, curTitle, curBody, curBlurb, curPublishedAt
           <textarea id="post-body" className="bg-slate-300 dark:bg-slate-800 rounded-lg p-1" value={body} onChange={(e) => setBody(e.target.value)} rows={9} />
         </div>
       </div>
-      <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> {path ? "Edit" : "Create"}</button>
+      <div className="flex gap-2">
+        <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
+        <button className="bg-red-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="button" onClick={deletePost}><FontAwesomeIcon icon={faTrashAlt} /> delete</button>
+      </div>
     </form>
   );
 }

@@ -36,7 +36,23 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
   if (body.publishedAt) updatedData.publishedAt = new Date(body.publishedAt as string);
   if (JSON.stringify(updatedData) === "{}") return NextResponse.json({ success: true });
   try {
-    await db.update(blogTable).set(updatedData).where(eq(blogTable.path, body.path));
+    await db.update(blogTable).set(updatedData).where(eq(blogTable.path, body.path as string));
+    return NextResponse.json({ success: true });
+  } catch (e) {
+    console.warn(e);
+    return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
+  }
+}
+export async function DELETE(req: NextRequest): Promise<NextResponse> {
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
+  }
+  if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a valid path attribute!" }, { status: 400 });
+  try {
+    await db.delete(blogTable).where(eq(blogTable.path, body.path as string));
     return NextResponse.json({ success: true });
   } catch (e) {
     console.warn(e);

@@ -1,8 +1,8 @@
 import { ClientTime } from "@/app/clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
-import { faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
+import { faPencil, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
@@ -10,7 +10,17 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: "blog post" };
+export async function generateMetadata({ params }: { params: Promise<{ path: string }> }): Promise<Metadata> {
+  let post;
+  try {
+    const res = await db.select().from(blogTable).where(eq(blogTable.path, (await params).path)).limit(1);
+    if (res.length < 1) throw new Error("blog post not found");
+    post = res[0];
+  } catch {
+    return { title: "blog post" };
+  }
+  return { title: post.title }
+}
 export default async function Page({ params }: { params: Promise<{ path: string }> }) {
   let blogPosts = null;
   try {
@@ -25,13 +35,11 @@ export default async function Page({ params }: { params: Promise<{ path: string 
   );
   const post = blogPosts[0];
   return (
-    <main className="flex flex-col min-h-screen p-8 md:p-16">
+    <main className="flex flex-col min-h-screen p-8 md:p-16 md:px-24 min-w-screen">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> {post.title}</h1>
       <p className="text-lg italic">{post.blurb}</p>
-      <div className="flex flex-col md:flex-row gap-2 justify-between">
-        <ClientTime date={new Date(post.publishedAt)} />
-      </div>
-      <div className="prose prose-neutral dark:prose-invert">
+      <p className="font-semibold text-slate-700 dark:text-slate-300 mb-3"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /> - <FontAwesomeIcon icon={faPencil} /> by nova</p>
+      <div className="prose prose-neutral dark:prose-invert min-w-full">
         <Markdown>{post.body}</Markdown>
       </div>
     </main>
