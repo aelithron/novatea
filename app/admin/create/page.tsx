@@ -1,11 +1,15 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
+import EditPostForm from "../post.form";
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: "create post" };
 export default async function Page() {
   return (
     <div className="flex flex-col min-h-screen p-8 md:p-16">
-      
+      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faPlus} /> create post</h1>
+      <EditPostForm path={null} />
     </div>
   );
 }
