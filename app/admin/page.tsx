@@ -1,4 +1,4 @@
-import { faArrowRight, faBriefcase, faPlus, faTag, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -47,8 +47,8 @@ async function BlogAdmin() {
   }
   return (
     <div className="flex flex-col gap-1">
-      {blogPosts.map(post => <div key={post.path} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
-        <Link href={`/admin/posts/${post.path}`} className="flex gap-2">
+      {blogPosts.map(post => <div key={post.path} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between mt-3">
+        <Link href={`/admin/posts/${post.path}`} className="flex gap-2 w-full">
           <div className="flex flex-col">
             <div className="flex flex-col md:flex-row gap-3 md:items-center">
               <h1 className="text-lg font-semibold">{post.title}</h1>
@@ -57,10 +57,6 @@ async function BlogAdmin() {
             <p className="italic">{post.blurb}</p>
           </div>
         </Link>
-        <div className="flex gap-1 items-center">
-          {(post.tags || []).map(tag => <p key={tag} className="bg-slate-400 dark:bg-slate-900 rounded-md p-1"><FontAwesomeIcon icon={faTag} /> {tag}</p>)}
-          <Link href={`/admin/posts/${post.path}`} className="bg-slate-400 dark:bg-slate-900 rounded-full p-1 mx-1 hover:text-sky-500"><FontAwesomeIcon icon={faArrowRight} /></Link>
-        </div>
       </div>)}
     </div>
   );

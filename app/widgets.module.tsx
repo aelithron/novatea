@@ -6,7 +6,7 @@ type UniversalStatusBody = { status: string, emoji: string, expiry: string };
 export async function UniversalStatusWidget({ email }: { email: string }) {
   let status: UniversalStatusBody | null = null;
   try {
-    const statusRes = await fetch(`http://localhost:3001/api/status?email=${email}`);
+    const statusRes = await fetch(`https://status.novatea.dev/api/status?email=${email}`);
     status = await statusRes.json() as UniversalStatusBody;
     if (!status.status || !statusRes.ok) throw new Error("Invalid response from Universal Status");
   } catch (e) {

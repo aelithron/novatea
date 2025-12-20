@@ -16,8 +16,8 @@ export default function EditPostForm({ path }: { path: string | null }) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (newPath.trim().length < 1 || title.trim().length < 1 || body.trim().length < 1) {
-      alert("make sure to fill in the post path, title, and body!");
+    if (newPath.trim().length < 1 || title.trim().length < 1) {
+      alert("make sure to fill in the post's path and title!");
       return;
     }
     const res = await fetch("/api/admin/blog", { method: path ? "PATCH" : "POST", body: JSON.stringify({ path: newPath, title, body, blurb, publishedAt }) });

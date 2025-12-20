@@ -1,7 +1,7 @@
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faArrowRight, faTag, faX } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import { ClientTime } from "../clientui.module";
@@ -40,7 +40,7 @@ async function BlogPosts() {
   return (
     <div className="mt-2">
       {blogPosts.map(post => <div key={post.path} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
-        <Link href={`/blog/${post.path}`} className="flex gap-2">
+        <Link href={`/blog/${post.path}`} className="flex gap-2 w-full">
           <div className="flex flex-col">
             <div className="flex flex-col md:flex-row gap-3 md:items-center">
               <h1 className="text-lg font-semibold">{post.title}</h1>
@@ -49,10 +49,6 @@ async function BlogPosts() {
             <p className="italic">{post.blurb}</p>
           </div>
         </Link>
-        <div className="flex gap-1 items-center">
-          {(post.tags || []).map(tag => <p key={tag} className="bg-slate-400 dark:bg-slate-900 rounded-md p-1"><FontAwesomeIcon icon={faTag} /> {tag}</p>)}
-          <Link href={`/blog/${post.path}`} className="bg-slate-400 dark:bg-slate-900 rounded-full p-1 mx-1 hover:text-sky-500"><FontAwesomeIcon icon={faArrowRight} /></Link>
-        </div>
       </div>)}
     </div>
   )
