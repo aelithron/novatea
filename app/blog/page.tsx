@@ -1,10 +1,10 @@
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faRss, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
-import { ClientTime } from "../clientui.module";
+import { ClientTime, CopyButton } from "../clientui.module";
 import Link from "next/link";
 import { eq } from "drizzle-orm";
 
@@ -13,7 +13,10 @@ export const metadata: Metadata = { title: "blog" };
 export default async function Page() {
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
-      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> blog</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> blog</h1>
+        <CopyButton text="https://novatea.dev/feed" message="copied rss feed url!"><FontAwesomeIcon icon={faRss} size="lg" /></CopyButton>
+      </div>
       <p>nova&apos;s blog about random things!</p>
       <BlogPosts />
     </main>

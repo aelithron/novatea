@@ -2,13 +2,14 @@ import { ClientTime } from "@/app/clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faBookOpen, faDownload, faPencil, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faPencil, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { DownloadPost } from "./postui.module";
+import remarkGfm from "remark-gfm";
 
 export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ path: string }> }): Promise<Metadata> {
@@ -46,7 +47,7 @@ export default async function Page({ params }: { params: Promise<{ path: string 
       <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faPencil} /> by nova - <FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /></p>
       <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faBookOpen} /> {post.body.split(" ").length} words (<FontAwesomeIcon icon={faClock} /> {Math.ceil(post.body.split(" ").length / 200)} min to read)</p>
       <div className="prose prose-neutral dark:prose-invert min-w-full mt-3">
-        <Markdown>{post.body}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]}>{post.body}</Markdown>
       </div>
     </main>
   );
