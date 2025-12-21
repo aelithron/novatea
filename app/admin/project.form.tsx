@@ -1,4 +1,5 @@
 "use client";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
@@ -86,6 +87,23 @@ export function EditProjectForm({ id, curTitle, curDesc, curCodeURL, curLink, cu
     }
     router.push(`/admin`);
   }
+    async function deleteProject() {
+    const verify = confirm(`are you sure you want to delete this project?\ntitle: ${curTitle}`);
+    if (!verify) return;
+    const res = await fetch("/api/admin/projects", { method: "DELETE", body: JSON.stringify({ id }) });
+    let resBody;
+    try {
+      resBody = await res.json();
+    } catch {
+      alert("unknown error while updating the project!");
+      return;
+    }
+    if (resBody.error) {
+      alert(`error updating the project: ${resBody.message} (${resBody.error})`);
+      return;
+    }
+    router.push("/admin");
+  }
   return (
     <form className="flex flex-col mt-4 gap-2 items-center" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
@@ -102,7 +120,10 @@ export function EditProjectForm({ id, curTitle, curDesc, curCodeURL, curLink, cu
             <input id="published" type="checkbox" checked={spotlighted} onChange={(e) => setSpotlighted(e.target.checked)} />
           </div>
       </div>
-      <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
+      <div className="flex gap-2 items-center">
+        <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
+        <button className="bg-red-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="button" onClick={deleteProject}><FontAwesomeIcon icon={faTrashAlt} /> delete</button>
+      </div>
     </form>
   );
 }

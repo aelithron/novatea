@@ -5,7 +5,7 @@ import { CreateProjectForm } from "../../project.form";
 import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: "create roject" };
+export const metadata: Metadata = { title: "create project" };
 export default async function Page() {
   return (
     <div className="flex flex-col min-h-screen p-4 py-8 md:p-8">
