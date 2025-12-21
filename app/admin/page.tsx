@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { LogOutButton } from "./adminui.module";
 import db from "@/utils/db";
-import { blogTable } from "@/utils/schema";
+import { blogTable, projectTable } from "@/utils/schema";
 import { faClock, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { ClientTime } from "../clientui.module";
 
@@ -14,15 +14,20 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col min-h-screen p-8 md:p-16">
-      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faBriefcase} /> admin</h1>
-      <div className="flex flex-col md:flex-row justify-between gap-2 mt-2">
+      <div className="flex gap-2 justify-between items-center">
+        <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faBriefcase} /> admin</h1>
+        <LogOutButton />
+      </div>
+      <div className="flex items-center justify-between gap-2 mt-2">
         <h1 className="text-xl font-semibold">blog posts</h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/admin/create"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500"><FontAwesomeIcon icon={faPlus} /> create post</Link>
-          <LogOutButton />
-        </div>
+        <Link href={"/admin/create"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500"><FontAwesomeIcon icon={faPlus} /> create post</Link>
       </div>
       <BlogAdmin />
+      <div className="flex items-center justify-between gap-2 mt-4">
+        <h1 className="text-xl font-semibold">projects</h1>
+        <Link href={"/admin/create/project"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500"><FontAwesomeIcon icon={faPlus} /> create project</Link>
+      </div>
+      <ProjectAdmin />
     </div>
   );
 }
@@ -41,7 +46,6 @@ async function BlogAdmin() {
     return (
       <div className="flex flex-col bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2 gap-2">
         <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faClock} /> no blog posts have been published!</h2>
-        <Link href={"/admin/create"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit"><FontAwesomeIcon icon={faPlus} /> create post</Link>
       </div>
     );
   }
@@ -57,6 +61,41 @@ async function BlogAdmin() {
             <div className="flex gap-1 items-center">
               <FontAwesomeIcon icon={post.published ? faEye : faEyeSlash} className={post.published ? "" : "text-slate-500"} />
               <p className="italic">{post.blurb}</p>
+            </div>
+          </div>
+        </Link>
+      </div>)}
+    </div>
+  );
+}
+async function ProjectAdmin() {
+  let projects = [];
+  try {
+    projects = await db.select().from(projectTable);
+  } catch {
+    return (
+      <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
+        <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faX} /> error loading projects!</h2>
+      </div>
+    );
+  }
+  if (projects.length < 1) {
+    return (
+      <div className="flex flex-col bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2 gap-2">
+        <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faClock} /> no projects have been published!</h2>
+      </div>
+    );
+  }
+  return (
+    <div className="flex flex-col gap-1">
+      {projects.map(project => <div key={project.id} className="flex p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between mt-3">
+        <Link href={`/admin/projects/${project.id}`} className="flex gap-2 w-full">
+          <div className="flex flex-col">
+            <div className="flex flex-col md:flex-row gap-3 md:items-center">
+              <h1 className="text-lg font-semibold">{project.title}</h1>
+            </div>
+            <div className="flex gap-1 items-center">
+              <p className="italic">{project.description}</p>
             </div>
           </div>
         </Link>
