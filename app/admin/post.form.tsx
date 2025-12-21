@@ -186,11 +186,15 @@ export function EditPostForm({ path, origTitle, origBody, origBlurb, origPublish
           <textarea id="post-body" className="bg-slate-300 dark:bg-slate-800 rounded-lg p-1" value={body} onChange={(e) => handleChange(e.target.value, setBody)} rows={9} />
         </div>
       </div>
-      <div className="flex gap-2 items-center">
-        <FontAwesomeIcon icon={saved ? faCloud : faSync} className="p-2 bg-slate-300 dark:bg-slate-800 rounded-full" />
-        <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
-        <button className="bg-red-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="button" onClick={deletePost}><FontAwesomeIcon icon={faTrashAlt} /> delete</button>
-        <Link className="bg-slate-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" href={`/admin/preview/${path}`}><FontAwesomeIcon icon={faEye} /> preview</Link>
+      <div className="flex flex-col md:flex-row gap-2 items-center">
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon icon={saved ? faCloud : faSync} className="p-2 bg-slate-300 dark:bg-slate-800 rounded-full" />
+          <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
+        </div>
+        <div className="flex gap-2 items-center">
+          <Link className="bg-slate-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" href={`/admin/preview/${path}`}><FontAwesomeIcon icon={faEye} /> preview</Link>
+          <button className="bg-red-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="button" onClick={deletePost}><FontAwesomeIcon icon={faTrashAlt} /> delete</button>
+        </div>
       </div>
     </form>
   );
