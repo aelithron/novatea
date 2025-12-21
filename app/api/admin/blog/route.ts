@@ -14,9 +14,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!validateAuth(req)) return NextResponse.json({ error: "invalid_auth", message: "you aren't authorized to do this! make sure you are logged in." }, { status: 401 });
   if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a unique path attribute!" }, { status: 400 });
   if (!body.title || (body.title as string).trim().length < 1) return NextResponse.json({ error: "missing_title", message: "'title' is missing, please send a title!" }, { status: 400 });
-  if ((await db.select().from(blogTable).where(eq(blogTable.path, body.path as string))).length !== 0) return NextResponse.json({ error: "already_used_path", message: "your 'path' has already been used!" }, { status: 400 });
-  const post = await db.insert(blogTable).values({ path: body.path as string, title: body.title as string, blurb: (body.blurb ? body.blurb as string : ""), body: (body.body ? body.body as string : ""), published: (body.published ? body.published as boolean : false), publishedAt: (body.publishedAt ? new Date(body.publishedAt as string) : new Date()) }).returning();
-  return NextResponse.json(post);
+  try {
+    if ((await db.select().from(blogTable).where(eq(blogTable.path, body.path as string))).length !== 0) return NextResponse.json({ error: "already_used_path", message: "your 'path' has already been used!" }, { status: 400 });
+  } catch (e) {
+    console.warn(e);
+    return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
+  }
+  try {
+    await db.insert(blogTable).values({ path: body.path as string, title: body.title as string, blurb: (body.blurb ? body.blurb as string : ""), body: (body.body ? body.body as string : ""), published: (body.published ? body.published as boolean : false), publishedAt: (body.publishedAt ? new Date(body.publishedAt as string) : new Date()) }).returning();
+  } catch (e) {
+    console.warn(e);
+    return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
+  }
+  return NextResponse.json({ success: true});
 }
 export async function PATCH(req: NextRequest): Promise<NextResponse> {
   let body;
@@ -27,7 +37,12 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
   }
   if (!validateAuth(req)) return NextResponse.json({ error: "invalid_auth", message: "you aren't authorized to do this! make sure you are logged in." }, { status: 401 });
   if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a valid path attribute!" }, { status: 400 });
-  if ((await db.select().from(blogTable).where(eq(blogTable.path, body.path as string))).length === 0) return NextResponse.json({ error: "not_found", message: "your 'path' does not resolve to any post!" }, { status: 404 });
+  try {
+    if ((await db.select().from(blogTable).where(eq(blogTable.path, body.path as string))).length === 0) return NextResponse.json({ error: "not_found", message: "your 'path' does not resolve to any post!" }, { status: 404 });
+  } catch (e) {
+    console.warn(e);
+    return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
+  }
   const updatedData: { title?: string, blurb?: string, body?: string, published?: boolean, publishedAt?: Date } = {};
   if (body.title) updatedData.title = body.title as string;
   if (body.blurb) updatedData.blurb = body.blurb as string;
