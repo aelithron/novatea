@@ -29,6 +29,7 @@ export function Footer() {
   return (
     <footer className="flex gap-2 md:px-6 p-3 justify-between">
       <a href="https://github.com/aelithron/novatea" target="_blank" className="flex items-center text-slate-500 hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /> <p className="ml-1 underline">source code</p></a>
+      <p>© nova {new Date().getFullYear()}</p>
       <div className="flex gap-2 items-center">
         <a href="https://notbyai.fyi" target="_blank"><Image src={notByAI} width={128} height={128} alt="Developed by a human, not by AI!" /></a>
         {process.env.ADMIN_TOKEN && <Link href={"/admin"} className="text-slate-500 hover:text-sky-500"><FontAwesomeIcon icon={faGear} /></Link>}

@@ -19,7 +19,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     description: "my blog about random things (mainly tech)!",
     link: "https://novatea.dev/blog",
     author: { name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" },
-    copyright: "All rights reserved.",
+    copyright: `© nova ${new Date().getFullYear()}`,
     language: "en",
     updated: data[0].publishedAt,
   });

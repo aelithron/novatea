@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Promise<{ path: string 
         <DownloadPost path={(await params).path} />
       </div>
       <p className="text-lg italic mb-3">{post.blurb}</p>
-      <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faPencil} /> by nova - <FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /></p>
+      <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faPencil} /> by nova - <FontAwesomeIcon icon={faClock} /> <ClientTime date={post.publishedAt} /></p>
       <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faBookOpen} /> {post.body.split(" ").length} words (<FontAwesomeIcon icon={faClock} /> {Math.ceil(post.body.split(" ").length / 200)} min to read)</p>
       <div className="prose prose-neutral dark:prose-invert min-w-full mt-3">
         <Markdown remarkPlugins={[remarkGfm]}>{post.body}</Markdown>
