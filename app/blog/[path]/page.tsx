@@ -2,12 +2,13 @@ import { ClientTime } from "@/app/clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faBookOpen, faPencil, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faDownload, faPencil, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import { DownloadPost } from "./postui.module";
 
 export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ path: string }> }): Promise<Metadata> {
@@ -19,13 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ path: str
   } catch {
     return { title: "blog post" };
   }
-  return { title: post.title }
+  return { title: post.title };
 }
 export default async function Page({ params }: { params: Promise<{ path: string }> }) {
   let blogPosts = null;
   try {
     blogPosts = await db.select().from(blogTable).where(and(eq(blogTable.published, true), eq(blogTable.path, (await params).path))).limit(1);
-  } catch {}
+  } catch { }
   if (!blogPosts || blogPosts.length < 1) return (
     <main className="flex flex-col min-h-screen p-8 md:p-16">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faX} /> blog post not found!</h1>
@@ -34,9 +35,13 @@ export default async function Page({ params }: { params: Promise<{ path: string 
     </main>
   );
   const post = blogPosts[0];
+
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16 md:px-24 min-w-screen">
-      <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> {post.title}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> {post.title}</h1>
+        <DownloadPost path={(await params).path} />
+      </div>
       <p className="text-lg italic mb-3">{post.blurb}</p>
       <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faPencil} /> by nova - <FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /></p>
       <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faBookOpen} /> {post.body.split(" ").length} words (<FontAwesomeIcon icon={faClock} /> {Math.ceil(post.body.split(" ").length / 200)} min to read)</p>

@@ -14,6 +14,5 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
   }
   if (post.length < 1) return NextResponse.json({ error: "not_found", message: "your 'path' does not resolve to any post!" }, { status: 404 });
-  const postHeader = `# ${post[0].title}\n## by nova - ${post[0].publishedAt.toString()}`;
-  return new NextResponse(`${postHeader}\n\n${post[0].body}`);
+  return new NextResponse(`# ${post[0].title}\n## by nova - ${new Intl.DateTimeFormat("en-US", { timeZone: "America/Denver", dateStyle: "long", timeStyle: "long" }).format(post[0].publishedAt)}\n\n${post[0].body}`);
 }
