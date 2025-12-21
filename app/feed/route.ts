@@ -29,14 +29,15 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       link: `${req.nextUrl.origin}/blog/${post.path}`,
       date: post.publishedAt,
       author: [{ name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" }],
-      content: post.body
+      description: post.blurb,
+      content: (post.body.length < 1000 ? post.body : `${post.body.slice(0, 1000)}...`)
     });
   }
   switch (type) {
     case "rss":
-      return new NextResponse(feed.rss2());
+      return new NextResponse(feed.rss2(), { headers: { "Content-Type": "application/rss+xml" } });
     case "atom":
-      return new NextResponse(feed.atom1());
+      return new NextResponse(feed.atom1(), { headers: { "Content-Type": "application/atom+xml" } });
     case "json":
       return new NextResponse(feed.json1());
     default:
