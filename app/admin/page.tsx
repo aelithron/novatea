@@ -5,7 +5,7 @@ import Link from "next/link";
 import { LogOutButton } from "./adminui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { faClock, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { ClientTime } from "../clientui.module";
 
 export const dynamic = 'force-dynamic';
@@ -54,7 +54,10 @@ async function BlogAdmin() {
               <h1 className="text-lg font-semibold">{post.title}</h1>
               <p className="text-slate-500"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /></p>
             </div>
-            <p className="italic">{post.blurb}</p>
+            <div className="flex gap-1 items-center">
+              <FontAwesomeIcon icon={post.published ? faEye : faEyeSlash} className={post.published ? "" : "text-slate-500"} />
+              <p className="italic">{post.blurb}</p>
+            </div>
           </div>
         </Link>
       </div>)}

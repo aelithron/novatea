@@ -1,8 +1,9 @@
 "use client";
 import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
-import { faCloud, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { faCloud, faEye, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPencil, faPlus, faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -189,6 +190,7 @@ export function EditPostForm({ path, origTitle, origBody, origBlurb, origPublish
         <FontAwesomeIcon icon={saved ? faCloud : faSync} className="p-2 bg-slate-300 dark:bg-slate-800 rounded-full" />
         <button className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="submit"><FontAwesomeIcon icon={faPencil} /> edit</button>
         <button className="bg-red-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" type="button" onClick={deletePost}><FontAwesomeIcon icon={faTrashAlt} /> delete</button>
+        <Link className="bg-slate-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit" href={`/admin/preview/${path}`}><FontAwesomeIcon icon={faEye} /> preview</Link>
       </div>
     </form>
   );
