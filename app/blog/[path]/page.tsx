@@ -2,7 +2,7 @@ import { ClientTime } from "@/app/clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faPencil, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faPencil, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
@@ -37,9 +37,10 @@ export default async function Page({ params }: { params: Promise<{ path: string 
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-16 md:px-24 min-w-screen">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faNewspaper} /> {post.title}</h1>
-      <p className="text-lg italic">{post.blurb}</p>
-      <p className="font-semibold text-slate-700 dark:text-slate-300 mb-3"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /> - <FontAwesomeIcon icon={faPencil} /> by nova</p>
-      <div className="prose prose-neutral dark:prose-invert min-w-full">
+      <p className="text-lg italic mb-3">{post.blurb}</p>
+      <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faPencil} /> by nova - <FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(post.publishedAt)} /></p>
+      <p className="font-semibold text-slate-700 dark:text-slate-300"><FontAwesomeIcon icon={faBookOpen} /> {post.body.split(" ").length} words (<FontAwesomeIcon icon={faClock} /> {Math.ceil(post.body.split(" ").length / 200)} min to read)</p>
+      <div className="prose prose-neutral dark:prose-invert min-w-full mt-3">
         <Markdown>{post.body}</Markdown>
       </div>
     </main>

@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ path: string 
   return (
     <div className="flex flex-col min-h-screen p-8 md:p-16">
       <h1 className="text-3xl font-semibold"><FontAwesomeIcon icon={faPencil} /> edit post</h1>
-      <EditPostForm path={(await params).path} curTitle={post[0].title} curBody={post[0].body} curBlurb={post[0].blurb} curPublished={post[0].published} curPublishedAt={new Date(post[0].publishedAt)} />
+      <EditPostForm path={(await params).path} origTitle={post[0].title} origBody={post[0].body} origBlurb={post[0].blurb} origPublished={post[0].published} origPublishedAt={new Date(post[0].publishedAt)} />
     </div>
   );
 }
