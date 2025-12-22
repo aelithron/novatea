@@ -20,7 +20,7 @@ export async function UniversalStatusWidget({ email }: { email: string }) {
   }
   if (status.status === "No status set.") return null;
   return (
-    <div className="flex flex-col p-2 bg-slate-700 rounded-xl mt-2">
+    <div className="flex flex-col p-2 bg-slate-400 dark:bg-slate-700 rounded-xl mt-2">
       <h1 className="font-semibold text-lg">nova&apos;s status</h1>
       <p>{status.emoji} {status.status}</p>
       {status.expiry && <p className="text-sm text-slate-500"><FontAwesomeIcon icon={faClock} /> expires <ClientTime date={new Date(status.expiry)} /></p>}
@@ -37,7 +37,7 @@ export async function LatestPostWidget() {
   }
   if (data.length < 1) return null;
   return (
-    <Link href={`/blog/${data[0].path}`} className="flex items-center justify-between p-2 bg-slate-700 rounded-xl mt-2">
+    <Link href={`/blog/${data[0].path}`} className="flex items-center justify-between p-2 bg-slate-400 dark:bg-slate-700 rounded-xl mt-2">
       <div className="flex flex-col">
         <h1 className="font-semibold text-lg"><FontAwesomeIcon icon={faNewspaper} /> latest post</h1>
         <h2 className="font-semibold">{data[0].title}</h2>
