@@ -48,3 +48,10 @@ export async function LatestPostWidget() {
     </Link>
   );
 }
+export function EightyEightThirtyOnes() {
+  return (
+    <div className="mt-2 flex gap-2">
+
+    </div>
+  );
+}
