@@ -1,6 +1,6 @@
 import { faClock, faNewspaper } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ClientTime } from "./clientui.module";
+import { ClientTime } from "../clientui.module";
 import db from "@/utils/db";
 import { blogTable } from "@/utils/schema";
 import { eq } from "drizzle-orm";

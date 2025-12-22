@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import Image from "next/image";
 import { CopyButton } from "./clientui.module";
-import { UniversalStatusWidget, LatestPostWidget } from "./widgets.module";
+import { UniversalStatusWidget, LatestPostWidget } from "./widgets/widgets.module";
+import { TimeWidget } from "./widgets/clientwidgets.module";
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: "home ✧ novatea.dev" };
@@ -15,7 +16,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
           <div className="flex flex-col">
             <Image src={"https://avatars.githubusercontent.com/u/187228556?v=4"} width={100} height={100} alt="my profile picture" className="rounded-xl" />
-            <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 mt-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (they/she)</h1>
+            <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (they/she)</h1>
           </div>
           <div className="mt-1 gap-2">
             <p>i&apos;m a full stack dev, writer, and amateur photographer :3</p>
@@ -31,6 +32,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
           <UniversalStatusWidget email="aelithron@gmail.com" />
           <LatestPostWidget />
+          <TimeWidget />
         </div>
       </div>
     </main>
