@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import AuthPrompt from "./auth.form";
 
 export const metadata: Metadata = { title: "admin auth" };
+export const dynamic = "force-dynamic";
 export default async function Page() {
   if (!process.env.ADMIN_TOKEN) return (
     <div className="flex flex-col min-h-screen p-8 md:p-16">
