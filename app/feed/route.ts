@@ -26,7 +26,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   for (const post of data) {
     feed.addItem({
       title: post.title,
-      link: `${req.nextUrl.origin}/blog/${post.path}`,
+      link: `https://novatea.dev/blog/${post.path}`,
       date: post.publishedAt,
       author: [{ name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" }],
       description: post.blurb,
