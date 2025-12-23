@@ -12,7 +12,18 @@ export const metadata: Metadata = {
     template: "%s ✧ novatea.dev",
     default: "novatea.dev"
   },
-  description: "nova's personal website and blog :3"
+  description: "nova's personal website and blog :3",
+  keywords: ["nova", "blog", "personal", "website", "novatea", "tech", "coding"],
+  authors: [{ name: "Nova" }],
+  creator: "Nova",
+  publisher: "Nova",
+  metadataBase: new URL("https://novatea.dev"),
+  openGraph: {
+    url: "https://novatea.dev",
+    type: "website",
+    locale: "en_US"
+  },
+  category: "technology"
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

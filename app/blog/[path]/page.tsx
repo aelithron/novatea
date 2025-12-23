@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ path: str
   } catch {
     return { title: "blog post" };
   }
-  return { title: post.title };
+  return { title: post.title, description: post.blurb };
 }
 export default async function Page({ params }: { params: Promise<{ path: string }> }) {
   let blogPosts = null;

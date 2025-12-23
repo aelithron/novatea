@@ -16,7 +16,7 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6">
         <div className="flex flex-col gap-2 p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
           <div className="flex flex-col">
-            <Image src={"https://avatars.githubusercontent.com/u/187228556?v=4"} width={100} height={100} alt="my profile picture" className="rounded-xl" />
+            <Image src={"/nova.png"} width={100} height={100} alt="my profile picture" className="rounded-xl" />
             <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (they/she)</h1>
           </div>
           <div className="mt-1 gap-2">
