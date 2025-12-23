@@ -42,7 +42,7 @@ export default function Home() {
           <p>if you want to know more about me, check out my <Link href={"/about"} className="hover:text-sky-500 underline">full about page</Link> :3</p>
           <div className="flex gap-2 mt-2 items-center">
             <p className="text-lg font-semibold">my 88x31:</p>
-            <p>coming soon :3</p>
+            <Image src={"/88x31.gif"} alt="novatea.dev 88x31" height={31} width={88} />
           </div>
           <EightyEightThirtyOnes />
         </div>
