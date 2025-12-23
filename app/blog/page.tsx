@@ -26,7 +26,8 @@ async function BlogPosts() {
   let blogPosts = [];
   try {
     blogPosts = (await db.select().from(blogTable).where(eq(blogTable.published, true))).sort((a, b) => { return b.publishedAt.getTime() - a.publishedAt.getTime() });
-  } catch {
+  } catch (e) {
+    console.warn(e);
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
         <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faX} /> error loading blog posts!</h2>

@@ -5,6 +5,7 @@ import { faCodeBranch, faLink, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "projects" };
 export default async function Page() {
   return (
@@ -19,7 +20,8 @@ async function ProjectList() {
   let projects;
   try {
     projects = await db.select().from(projectTable);
-  } catch {
+  } catch (e) {
+    console.warn(e);
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
         <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faX} /> error loading projects!</h2>
