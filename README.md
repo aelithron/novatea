@@ -11,6 +11,7 @@ Nova's personal website and blog! Made for Hack Club [Flavortown](https://flavor
 - A portfolio of my projects
 - Pages talking about myself and my accounts
 - Full admin panel for changing blog posts and projects
+- More cool things! :3
 
 ## Usage
 Using this is quite simple! Just go to [novatea.dev](https://novatea.dev) in any web browser!
@@ -52,3 +53,5 @@ Here's some links (these are the main ones I was inspired by, bold ones are my f
 - **https://shymike.dev**
 - https://kibty.town
 - https://lily.pet
+
+I also used Font Awesome icons throughout the app!
