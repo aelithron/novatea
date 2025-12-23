@@ -26,7 +26,7 @@ export default function Home() {
               <a href="https://github.com/aelithron" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /></a>
               <CopyButton text="aelithron" message="copied discord username!"><FontAwesomeIcon icon={faDiscord} /></CopyButton>
               <CopyButton text="novatea.84" message="copied signal username!"><FontAwesomeIcon icon={faSignalMessenger} /></CopyButton>
-              <a href="https://reddit.com/novatea0" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faReddit} /></a>
+              <a href="https://reddit.com/u/novatea0" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faReddit} /></a>
             </div>
           </div>
         </div>
