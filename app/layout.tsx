@@ -23,7 +23,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US"
   },
-  category: "technology"
+  category: "technology",
+  alternates: {
+    types: {
+      'application/rss+xml': 'https://novatea.dev/feed',
+      'application/atom+xml': 'https://novatea.dev/feed?type=atom',
+    }
+  }
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
