@@ -17,7 +17,7 @@ export default function Page() {
             <li>i&apos;m a minor (teenager)</li>
             <li>i am transgender, more specifically transfeminine non-binary</li>
             <li>i am omnisexual, with a preference for women and non-binary people. this is under the bi umbrella :3</li>
-            <li>my aesthetic is <a href="https://aesthetics.fandom.com/wiki/Soft_Girl" className="hover:text-sky-500 underline">soft girl</a></li>
+            <li>my aesthetic is <a href="https://aesthetics.fandom.com/wiki/Soft_Girl" target="_blank" className="hover:text-sky-500 underline">soft girl</a></li>
           </ul>
         </div>
         <div>
@@ -28,8 +28,7 @@ export default function Page() {
           <ul className="list-disc list-inside">
             <li>bigots</li>
             <li>ableists</li>
-            <li>right-wingers (specifically people who support trump)</li>
-            <li>misogynists</li>
+            <li>far-right/maga</li>
             <li>creeps / predators</li>
           </ul>
         </div>
@@ -37,7 +36,7 @@ export default function Page() {
           <h2 className="text-xl font-semibold">things i do</h2>
           <ul className="list-disc list-inside">
             <li>i&apos;m a full-stack software developer! this means i can make backends and frontends for all kinds of things (apps, websites, etc.)</li>
-            <li>i&apos;m a member of <a href="https://www.hackclub.com" className="hover:text-sky-500 underline">Hack Club</a>, an online community of teen programmers!</li>
+            <li>i&apos;m a member of <a href="https://www.hackclub.com" target="_blank" className="hover:text-sky-500 underline">Hack Club</a>, an online community of teen programmers!</li>
             <li>i am a creative writer! i write short stories and novellas, and am working on some full length chaptered novels. my focus is mainly original writing, but i make fanfiction on occasion.</li>
             <li>i like to take photos! my main focuses are nature (namely skies) and people, and i like to take self-portraits. i call myself an amateur photographer, as i&apos;m still learning.</li>
             <li>i do digital art on occasion. i&apos;m not very good at it, but it&apos;s fun and i am trying to improve!</li>

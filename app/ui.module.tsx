@@ -9,7 +9,7 @@ import { Roboto_Mono } from "next/font/google";
 const robotoMono = Roboto_Mono({ weight: "400" });
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 flex flex-col md:flex-row items-center md:justify-between gap-2 p-2 md:px-6 bg-slate-300/50 dark:bg-slate-800/40">
+    <header className="sticky top-0 z-50 flex flex-col md:flex-row items-center md:justify-between gap-2 p-2 md:px-6 bg-slate-300/50 dark:bg-slate-800/50">
       <Link href={"/"} className={`text-xl font-semibold bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text ${robotoMono.className}`}>nova :3</Link>
       <div className="flex flex-col md:flex-row gap-4 justify-between">
         <div className="flex gap-4 justify-center md:justify-start">
