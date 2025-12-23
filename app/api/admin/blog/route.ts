@@ -1,5 +1,6 @@
 import { validateAuth } from "@/utils/auth";
 import db from "@/utils/db";
+import { rateLimit } from "@/utils/ratelimit";
 import { blogTable } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,6 +12,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   } catch {
     return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
   }
+  if (req.headers.get('x-forwarded-for') !== null && rateLimit(req.headers.get('x-forwarded-for')!)) return NextResponse.json({ success: false, error: "rate_limited", message: "you are rate limited, please slow down!" }, { status: 429 });
   if (!validateAuth(req)) return NextResponse.json({ error: "invalid_auth", message: "you aren't authorized to do this! make sure you are logged in." }, { status: 401 });
   if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a unique path attribute!" }, { status: 400 });
   if (!body.title || (body.title as string).trim().length < 1) return NextResponse.json({ error: "missing_title", message: "'title' is missing, please send a title!" }, { status: 400 });
@@ -35,6 +37,7 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
   } catch {
     return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
   }
+  if (req.headers.get('x-forwarded-for') !== null && rateLimit(req.headers.get('x-forwarded-for')!)) return NextResponse.json({ success: false, error: "rate_limited", message: "you are rate limited, please slow down!" }, { status: 429 });
   if (!validateAuth(req)) return NextResponse.json({ error: "invalid_auth", message: "you aren't authorized to do this! make sure you are logged in." }, { status: 401 });
   if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a valid path attribute!" }, { status: 400 });
   try {
@@ -65,6 +68,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
   } catch {
     return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
   }
+  if (req.headers.get('x-forwarded-for') !== null && rateLimit(req.headers.get('x-forwarded-for')!)) return NextResponse.json({ success: false, error: "rate_limited", message: "you are rate limited, please slow down!" }, { status: 429 });
   if (!body.path || (body.path as string).trim().length < 1) return NextResponse.json({ error: "missing_path", message: "'path' is missing, please send a valid path attribute!" }, { status: 400 });
   try {
     await db.delete(blogTable).where(eq(blogTable.path, body.path as string));

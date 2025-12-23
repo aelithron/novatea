@@ -1,3 +1,4 @@
+import { rateLimit } from "@/utils/ratelimit";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
@@ -7,6 +8,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   } catch {
     return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
   }
+  if (req.headers.get('x-forwarded-for') !== null && rateLimit(req.headers.get('x-forwarded-for')!)) return NextResponse.json({ success: false, error: "rate_limited", message: "you are rate limited, please slow down!" }, { status: 429 });
   if (!process.env.ADMIN_TOKEN) return NextResponse.json({ success: false, error: "no_admin_token", message: "admin portal isn't set up, please add an ADMIN_TOKEN to environment variables!" }, { status: 500 });
   if (!body.token || (body.token as string).trim().length < 1) return NextResponse.json({ success: false, error: "missing_token", message: "no token was provided!" }, { status: 401 });
   if ((body.token as string).trim() === process.env.ADMIN_TOKEN) {

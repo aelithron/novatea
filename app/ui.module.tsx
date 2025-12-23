@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHome, faNewspaper, faClipboard, faComment, faAddressCard } from "@fortawesome/free-regular-svg-icons";
 import Image from "next/image";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import notByAI from "@/public/not-by-ai.svg"
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { Roboto_Mono } from "next/font/google";
 
@@ -34,7 +33,7 @@ export function Footer() {
       <p>© nova {new Date().getFullYear()}</p>
       <div className="flex gap-2 items-center">
         {process.env.ADMIN_TOKEN && <Link href={"/admin"} className="text-slate-500 hover:text-sky-500"><FontAwesomeIcon icon={faGear} /></Link>}
-        <a href="https://notbyai.fyi" target="_blank"><Image src={notByAI} width={128} height={128} alt="Developed by a human, not by AI!" /></a>
+        <a href="https://notbyai.fyi" target="_blank"><Image src={"/not-by-ai.svg"} width={128} height={128} alt="Developed by a human, not by AI!" /></a>
       </div>
     </footer>
   )
