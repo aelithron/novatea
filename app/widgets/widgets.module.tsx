@@ -30,7 +30,7 @@ export async function UniversalStatusWidget({ email }: { email: string }) {
 export async function LatestPostWidget() {
   let data;
   try {
-    data = await db.select().from(blogTable).where(eq(blogTable.published, true));
+    data = (await db.select().from(blogTable).where(eq(blogTable.published, true))).sort((a, b) => { return b.publishedAt.getTime() - a.publishedAt.getTime() });
   } catch (e) {
     console.warn(`error with database! ${e}`);
     return null;
