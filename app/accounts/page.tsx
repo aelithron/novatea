@@ -1,6 +1,6 @@
 import { faDiscord, faGithub, faReddit, faSignalMessenger } from "@fortawesome/free-brands-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 
@@ -25,6 +25,10 @@ export default function Page() {
         </div>
       </div>
       <div className="flex flex-col gap-2 mt-4">
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1"><FontAwesomeIcon icon={faTag} /> pronouns.page</div>
+          <a href="https://en.pronouns.page/@novatea" className="underline hover:text-sky-500">@novatea</a>
+        </div>
         <div className="flex flex-col">
           <div className="flex items-center gap-1"><FontAwesomeIcon icon={faGithub} /> github</div>
           <a href="https://github.com/aelithron" target="_blank" className="underline hover:text-sky-500">aelithron</a>

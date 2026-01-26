@@ -1,11 +1,9 @@
 "use client";
 import { faKey, faSignIn, faUserLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AuthPrompt() {
-  const router = useRouter();
   const [token, setToken] = useState<string>("");
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -17,7 +15,7 @@ export default function AuthPrompt() {
       alert("login failed: unknown error!");
     }
     if (body.success) {
-      router.push("/admin");
+      window.location.href = "/admin";
       return;
     } else alert(`login failed: ${body.message} (${body.error})`);
   }
