@@ -12,7 +12,7 @@ export function TimeWidget() {
     const timer = setInterval(() => tick(), 1000);
     return () => clearInterval(timer);
   });
-  const displayTime = (date ? new Intl.DateTimeFormat("en", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short" }).format(date) : "00:00:00 AM").match(/^(\d+):(\d+):(\d+) ([AP]M) (P[SD]T)$/i) || ["", "00", "00", "00", "AM", ""]
+  const displayTime = (date ? new Intl.DateTimeFormat("en", { timeZone: "America/Denver", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short" }).format(date) : "00:00:00 AM").match(/^(\d+):(\d+):(\d+) ([AP]M) (M[SD]T)$/i) || ["", "00", "00", "00", "AM", ""]
   return (
     <div className="flex flex-col items-center p-2 bg-slate-400 dark:bg-slate-700 rounded-xl mt-2">
       <h2 className="text-lg font-semibold"><FontAwesomeIcon icon={faClock} /> current time</h2>
