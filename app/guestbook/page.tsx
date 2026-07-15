@@ -40,7 +40,7 @@ async function Guestbook() {
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
       {entries.map(entry => <div key={entry.id} className="flex flex-col p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
         <div className="flex justify-between gap-2 w-full">
           <p>{entry.name}</p>

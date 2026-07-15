@@ -39,7 +39,7 @@ async function GuestbookAdmin() {
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 mt-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-2">
       {entries.map(entry => <div key={entry.id} className="flex flex-col p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
         <div className="flex justify-between gap-2 w-full">
           <p><FontAwesomeIcon icon={entry.visible ? faEye : faEyeSlash} className={entry.visible ? "" : "text-slate-500"} /> {entry.name}</p>
