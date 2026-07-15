@@ -6,6 +6,13 @@ import { blogTable } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import Image from "next/image";
+
+import alex88x31 from "@/public/friend-88x31s/parkalex.png";
+import error88x31 from "@/public/friend-88x31s/errorcodezero.png";
+
+import hackclub88x31 from "@/public/other-88x31s/hackclub.png";
+import transrights88x31 from "@/public/other-88x31s/transrights.png";
 
 type UniversalStatusBody = { status: string, emoji: string, expiry: string };
 export async function UniversalStatusWidget({ email }: { email: string }) {
@@ -50,8 +57,15 @@ export async function LatestPostWidget() {
 }
 export function EightyEightThirtyOnes() {
   return (
-    <div className="mt-2 flex gap-2">
-
+    <div className="flex flex-col gap-2 mt-4">
+      <div className="flex gap-2">
+        <a href="https://parkalex.dev" target="_blank"><Image src={alex88x31} width={88} height={31} alt="Alex's 88x31" /></a>
+        <a href="https://errorcodezero.dev" target="_blank"><Image src={error88x31} width={88} height={31} alt="errorcodezero's 88x31" /></a>
+      </div>
+      <div className="flex gap-2">
+        <a href="https://hackclub.com" target="_blank"><Image src={hackclub88x31} width={88} height={31} alt="Hack Club 88x31" /></a>
+        <Image src={transrights88x31} width={88} height={31} alt="Trans Rights! (88x31)" />
+      </div>
     </div>
   );
 }

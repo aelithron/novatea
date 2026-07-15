@@ -47,7 +47,7 @@ async function GuestbookAdmin() {
         </div>
         <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.body}</p>
         <p>email: <a href={`mailto:${entry.email}`} className="underline hover:text-sky-500">{entry.email}</a></p>
-        <p>url: {entry.url ? <a href={entry.url} className="underline hover:text-sky-500">{entry.url}</a> : <u>none</u>}</p>
+        <p>url: {entry.url ? <a href={entry.url} className="underline hover:text-sky-500">{entry.url}</a> : <i>none</i>}</p>
         <div className="flex justify-between gap-2 text-slate-500 text-sm">
           <p><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(entry.createdAt)} /></p>
           <p>id: {entry.id}</p>

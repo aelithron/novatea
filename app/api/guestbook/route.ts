@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   if (!body.email || (body.email as string).trim().length < 1) return NextResponse.json({ error: "missing_email", message: "'email' is missing, please input your email address!" }, { status: 400 });
   if (!body.body || (body.body as string).trim().length < 1) return NextResponse.json({ error: "missing_body", message: "'body' is missing, please fill in the message you want to send!" }, { status: 400 });
   try {
-    await db.insert(guestbookTable).values({ name: body.name as string, email: body.email as string, body: body.body as string, url: (body.url ? body.url as string : null), visible: false });
+    await db.insert(guestbookTable).values({ name: body.name as string, email: body.email as string, body: body.body as string, url: (body.url ? body.url as string : null), visible: false, createdAt: new Date() });
   } catch (e) {
     console.warn(e);
     return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });

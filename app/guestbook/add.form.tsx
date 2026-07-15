@@ -19,6 +19,10 @@ export default function GuestbookForm() {
         return;
       }
       alert("thanks! your entry has been sent to nova, and will be displayed publicly soon.");
+      setName("");
+      setEmail("");
+      setBody("");
+      setURL("");
     } catch (e) {
       console.error(`failed to submit guestbook entry: ${e}`);
       alert("failed to submit guestbook entry, check the browser console for info or try again!");
