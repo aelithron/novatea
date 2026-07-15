@@ -39,7 +39,7 @@ export default function GuestbookModeration({ id, visible }: { id: number, visib
         alert(`error deleting the guestbook entry! ${parsed.message ? parsed.message : ""}`);
         return;
       }
-      window.navigation.reload();
+      window.location.reload();
     } catch (e) {
       console.error(`error deleting the guestbook entry: ${e}`);
       alert(`error deleting the guestbook entry: ${e}`);
