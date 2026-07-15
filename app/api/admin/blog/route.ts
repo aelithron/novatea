@@ -28,7 +28,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     console.warn(e);
     return NextResponse.json({ error: "update_failure", message: "an error occured while updating the database!" }, { status: 500 });
   }
-  return NextResponse.json({ success: true});
+  return NextResponse.json({ success: true });
 }
 export async function PATCH(req: NextRequest): Promise<NextResponse> {
   let body;
