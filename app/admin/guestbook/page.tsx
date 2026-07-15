@@ -31,7 +31,6 @@ async function GuestbookAdmin() {
       </div>
     );
   }
-  entries.push({ id: 1, name: "nova", email: "nova@novatea.dev", url: "https://github.com/aelithron", body: "meow mrrp hi", createdAt: new Date(), visible: true });
   if (entries.length < 1) {
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
