@@ -11,7 +11,7 @@ export default function GuestbookModeration({ id, visible }: { id: number, visib
         alert(`error making the guestbook entry visible! ${parsed.message ? parsed.message : ""}`);
         return;
       }
-      window.navigation.reload();
+      window.location.reload();
     } catch (e) {
       console.error(`error making the guestbook entry visible: ${e}`);
       alert(`error making the guestbook entry visible: ${e}`);
@@ -25,7 +25,7 @@ export default function GuestbookModeration({ id, visible }: { id: number, visib
         alert(`error hiding the guestbook entry! ${parsed.message ? parsed.message : ""}`);
         return;
       }
-      window.navigation.reload();
+      window.location.reload();
     } catch (e) {
       console.error(`error hiding the guestbook entry: ${e}`);
       alert(`error hiding the guestbook entry: ${e}`);
