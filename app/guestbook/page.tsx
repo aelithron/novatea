@@ -21,10 +21,9 @@ export default async function Page() {
   );
 }
 async function Guestbook() {
-  const entries = [];
-  entries.push({ id: 1, name: "nova", email: "nova@novatea.dev", url: "https://github.com/aelithron", body: "meow mrrp hi", createdAt: new Date(), visible: true });
+  let entries = [];
   try {
-    //entries = (await db.select().from(guestbookTable).where(eq(guestbookTable.visible, true))).sort((a, b) => { return b.createdAt.getTime() - a.createdAt.getTime() });
+    entries = (await db.select().from(guestbookTable).where(eq(guestbookTable.visible, true))).sort((a, b) => { return b.createdAt.getTime() - a.createdAt.getTime() });
   } catch (e) {
     console.warn(e);
     return (
@@ -33,6 +32,7 @@ async function Guestbook() {
       </div>
     );
   }
+  entries.push({ id: 1, name: "nova", email: "nova@novatea.dev", url: "https://github.com/aelithron", body: "meow mrrp hi", createdAt: new Date(), visible: true });
   if (entries.length < 1) {
     return (
       <div className="bg-slate-300 dark:bg-slate-700 rounded-lg p-2 mt-2">
@@ -45,7 +45,7 @@ async function Guestbook() {
       {entries.map(entry => <div key={entry.id} className="flex flex-col p-2 bg-slate-300 dark:bg-slate-800 rounded-lg gap-2 justify-between">
         <div className="flex justify-between gap-2 w-full">
           <p>{entry.name}</p>
-          <a href={entry.url} target="_blank" className="text-slate-700 dark:text-slate-300 hover:text-sky-500"><u>link</u> <FontAwesomeIcon icon={faUpRightFromSquare} /></a>
+          {entry.url && <a href={entry.url} target="_blank" className="text-slate-700 dark:text-slate-300 hover:text-sky-500"><u>link</u> <FontAwesomeIcon icon={faUpRightFromSquare} /></a>}
         </div>
         <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.body}</p>
         <p className="text-slate-500 text-sm"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(entry.createdAt)} /></p>

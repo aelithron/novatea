@@ -1,4 +1,4 @@
-import { faBriefcase, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faBriefcase, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -28,6 +28,10 @@ export default async function Page() {
         <Link href={"/admin/create/project"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500"><FontAwesomeIcon icon={faPlus} /> create project</Link>
       </div>
       <ProjectAdmin />
+      <div className="flex flex-col mt-4 gap-2">
+        <h1 className="text-xl font-semibold">guestbook</h1>
+        <Link href={"/admin/guestbook"} className="bg-violet-500 rounded-lg p-1 px-2 hover:text-sky-500 w-fit"><FontAwesomeIcon icon={faArrowRight} /> go!</Link>
+      </div>
     </div>
   );
 }
