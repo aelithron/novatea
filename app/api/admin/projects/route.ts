@@ -65,6 +65,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "invalid_body", message: "body was invalid or malformed, please send valid JSON!" }, { status: 400 });
   }
   if (req.headers.get('x-forwarded-for') !== null && rateLimit(req.headers.get('x-forwarded-for')!)) return NextResponse.json({ success: false, error: "rate_limited", message: "you are rate limited, please slow down!" }, { status: 429 });
+  if (!validateAuth(req)) return NextResponse.json({ error: "invalid_auth", message: "you aren't authorized to do this! make sure you are logged in." }, { status: 401 });
   if (!body.id || isNaN(Number.parseInt(body.id))) return NextResponse.json({ error: "missing_id", message: "'id' is missing, please send a valid id attribute!" }, { status: 400 });
   try {
     await db.delete(projectTable).where(eq(projectTable.id, Number.parseInt(body.id as string)));
