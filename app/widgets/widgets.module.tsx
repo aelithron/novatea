@@ -22,6 +22,9 @@ import shuflduf88x31 from "@/public/friend-88x31s/shuflduf.gif";
 
 import hackclub88x31 from "@/public/other-88x31s/hackclub.png";
 import transrights88x31 from "@/public/other-88x31s/transrights.png";
+import antiAI88x31 from "@/public/other-88x31s/antiai.png";
+import trans88x31 from "@/public/other-88x31s/trans.png";
+import pride88x31 from "@/public/other-88x31s/pride.png";
 
 type UniversalStatusBody = { status: string, emoji: string, expiry: string };
 export async function UniversalStatusWidget({ email }: { email: string }) {
@@ -82,7 +85,10 @@ export function EightyEightThirtyOnes() {
       </div>
       <div className="flex gap-2">
         <a href="https://hackclub.com" target="_blank"><Image src={hackclub88x31} width={88} height={31} alt="Hack Club 88x31" /></a>
+        <Image src={trans88x31} width={88} height={31} alt="Trans flag (88x31)" />
+        <Image src={pride88x31} width={88} height={31} alt="Pride flag (88x31)" />
         <Image src={transrights88x31} width={88} height={31} alt="Trans Rights! (88x31)" />
+        <Image src={antiAI88x31} width={88} height={31} alt="Anti AI (88x31)" />
       </div>
     </div>
   );
