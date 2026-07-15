@@ -4,6 +4,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import "./globals.css";
 import { Footer, Header } from "./ui.module";
+import Script from "next/script";
 
 config.autoAddCss = false;
 const quicksand = Quicksand({ weight: "500" });
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
         <Footer />
       </body>
+      <Script src="https://pagering.gideon.sh/embed.js" defer={true}></Script>
     </html>
   );
 }
