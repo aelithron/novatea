@@ -1,6 +1,7 @@
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = { title: "about" }
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
       <p className="mb-2">an extended bio, mostly in list form</p>
       <p>hi! my name is nova, and i&apos;m a random software dev on the internet :3</p>
       <p>this won&apos;t have everything, as i&apos;m saving some things for my blog.</p>
+      <p>you can also see my list of accounts / ways to contact me <Link href={"/accounts"} className={`hover:text-sky-500 underline`}>here</Link>!</p>
       <div className="flex flex-col gap-2 mt-2">
         <div>
           <h2 className="text-xl font-semibold">fun facts about me</h2>

@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
           <div className="flex flex-col">
             <Image src={"/nova.png"} width={100} height={100} alt="my profile picture" className="rounded-xl" />
-            <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (they/she)</h1>
+            <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (she/they)</h1>
           </div>
           <div className="mt-1 gap-2">
             <p>i&apos;m a full stack dev, writer, and amateur photographer :3</p>
@@ -39,7 +39,7 @@ export default function Home() {
           <h1 className="text-xl font-semibold"><FontAwesomeIcon icon={faAddressCard} /> about me!</h1>
           <p>hi again! my name is nova, and i&apos;m a teen transfem who does software development, plus some other things!</p>
           <p>i&apos;m a member of <a className="underline hover:text-sky-500" href="https://hackclub.com">hack club</a>, a community for teen software devs. i&apos;ve made some cool software, like <a className="underline hover:text-sky-500" href="https://github.com/aelithron/lyrickit">lyrickit</a> and <a className="underline hover:text-sky-500" href="https://github.com/aelithron/universal-status">universal status</a>!</p>
-          <p>if you want to know more about me, check out my <Link href={"/about"} className="hover:text-sky-500 underline">full about page</Link> :3</p>
+          <p>if you want to know more about me, check out my <Link href={"/about"} className="hover:text-sky-500 underline">full about page</Link>, or my <Link href={"/accounts"} className={`hover:text-sky-500 underline`}>accounts</Link> :3</p>
           <div className="flex gap-2 mt-2 items-center">
             <p className="text-lg font-semibold">my 88x31:</p>
             <Image src={"/88x31.gif"} alt="novatea.dev 88x31" height={31} width={88} />

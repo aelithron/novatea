@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHome, faNewspaper, faClipboard, faComment, faAddressCard } from "@fortawesome/free-regular-svg-icons";
+import { faHome, faNewspaper, faClipboard, faAddressCard, faContactBook } from "@fortawesome/free-regular-svg-icons";
 import Image from "next/image";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,7 @@ export function Header() {
         </div>
         <div className="flex gap-4 justify-center md:justify-start">
           <Link href={"/projects"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faClipboard} /> projects</Link>
-          <Link href={"/accounts"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faComment} /> accounts</Link>
+          <Link href={"/guestbook"} className={`hover:text-sky-500`}><FontAwesomeIcon icon={faContactBook} /> guestbook</Link>
         </div>
       </div>
     </header>
