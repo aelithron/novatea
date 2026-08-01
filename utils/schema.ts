@@ -23,5 +23,6 @@ export const guestbookTable = pgTable("guestbook", {
   url: text(),
   body: text().notNull(),
   createdAt: timestamp({ mode: "date" }).notNull().defaultNow(),
-  visible: boolean().notNull().default(false)
+  visible: boolean().notNull().default(false),
+  reply: text().notNull()
 });

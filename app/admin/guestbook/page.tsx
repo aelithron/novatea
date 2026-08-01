@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
 import Link from "next/link";
 import GuestbookModeration from "./moderation.module";
+import GuestbookReply from "./reply.module";
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: "guestbook admin" };
@@ -48,6 +49,7 @@ async function GuestbookAdmin() {
         <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg h-full">{entry.body}</p>
         <p>email: <a href={`mailto:${entry.email}`} className="underline hover:text-sky-500">{entry.email}</a></p>
         <p>url: {entry.url ? <a href={entry.url} className="underline hover:text-sky-500">{entry.url}</a> : <i>none</i>}</p>
+        <GuestbookReply id={entry.id} curReply={entry.reply} />
         <div className="flex justify-between gap-2 text-slate-500 text-sm">
           <p><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(entry.createdAt)} /></p>
           <p>id: {entry.id}</p>
