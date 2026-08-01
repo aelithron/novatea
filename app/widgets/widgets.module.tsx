@@ -71,19 +71,19 @@ export function EightyEightThirtyOnes() {
   return (
     <div className="flex flex-col gap-2 mt-4">
       <div className="flex flex-wrap gap-2">
-        <a href="https://addy10s.xyz" target="_blank"><Image src={addy88x31} width={88} height={31} alt="Addy's 88x31" /></a>
+        <a href="https://addy10s.xyz" target="_blank"><Image src={addy88x31} width={88} height={31} alt="Addy's 88x31" unoptimized={true} /></a>
         <a href="https://astracelestine.nekoweb.org" target="_blank"><Image src={astra88x31} width={88} height={31} alt="Astra's 88x31" /></a>
         <a href="https://errorcodezero.dev" target="_blank"><Image src={error88x31} width={88} height={31} alt="errorcodezero's 88x31" /></a>
         <a href="https://gizzy.gay" target="_blank"><Image src={gizzy88x31} width={88} height={31} alt="Gizzy's 88x31" /></a>
         <a href="https://parkalex.dev" target="_blank"><Image src={alex88x31} width={88} height={31} alt="Alex's 88x31" /></a>
         <a href="https://ivie.codes" target="_blank"><Image src={ivie88x31} width={88} height={31} alt="Ivie's 88x31" /></a>
         <a href="https://lynn.pt" target="_blank"><Image src={lynn88x31} width={88} height={31} alt="Lynn's 88x31" /></a>
-        <a href="https://shuflduf.xyz" target="_blank"><Image src={shuflduf88x31} width={88} height={31} alt="Shuflduf's 88x31" /></a>
-        <a href="https://gideon.sh" target="_blank"><Image src={gideon88x31} width={88} height={31} alt="Gideon's 88x31" /></a>
+        <a href="https://shuflduf.xyz" target="_blank"><Image src={shuflduf88x31} width={88} height={31} alt="Shuflduf's 88x31" unoptimized={true} /></a>
+        <a href="https://gideon.sh" target="_blank"><Image src={gideon88x31} width={88} height={31} alt="Gideon's 88x31" unoptimized={true} /></a>
         <a href="https://3kh0.net" target="_blank"><Image src={rowan88x31} width={88} height={31} alt="Rowan's 88x31" /></a>
-        <a href="https://saahild.com/" target="_blank"><Image src={neon88x31} width={88} height={31} alt="Neon's 88x31" /></a>
+        <a href="https://saahild.com/" target="_blank"><Image src={neon88x31} width={88} height={31} alt="Neon's 88x31" unoptimized={true} /></a>
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <a href="https://hackclub.com" target="_blank"><Image src={hackclub88x31} width={88} height={31} alt="Hack Club 88x31" /></a>
         <Image src={trans88x31} width={88} height={31} alt="Trans flag (88x31)" />
         <Image src={pride88x31} width={88} height={31} alt="Pride flag (88x31)" />

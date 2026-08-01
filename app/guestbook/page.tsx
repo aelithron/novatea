@@ -46,7 +46,7 @@ async function Guestbook() {
           <p>{entry.name}</p>
           {entry.url && <a href={entry.url} target="_blank" className="text-slate-700 dark:text-slate-300 hover:text-sky-500"><u>link</u> <FontAwesomeIcon icon={faUpRightFromSquare} /></a>}
         </div>
-        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.body}</p>
+        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg h-full">{entry.body}</p>
         <p className="text-slate-500 text-sm"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(entry.createdAt)} /></p>
       </div>)}
     </div>

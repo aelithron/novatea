@@ -45,7 +45,7 @@ async function GuestbookAdmin() {
           <p><FontAwesomeIcon icon={entry.visible ? faEye : faEyeSlash} className={entry.visible ? "" : "text-slate-500"} /> {entry.name}</p>
           <GuestbookModeration id={entry.id} visible={entry.visible} />
         </div>
-        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.body}</p>
+        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg h-full">{entry.body}</p>
         <p>email: <a href={`mailto:${entry.email}`} className="underline hover:text-sky-500">{entry.email}</a></p>
         <p>url: {entry.url ? <a href={entry.url} className="underline hover:text-sky-500">{entry.url}</a> : <i>none</i>}</p>
         <div className="flex justify-between gap-2 text-slate-500 text-sm">
