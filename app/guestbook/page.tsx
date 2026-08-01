@@ -1,6 +1,6 @@
 import db from "@/utils/db";
 import { guestbookTable } from "@/utils/schema";
-import { faClock, faContactBook } from "@fortawesome/free-regular-svg-icons";
+import { faClock, faComment, faContactBook } from "@fortawesome/free-regular-svg-icons";
 import { faUpRightFromSquare, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { eq } from "drizzle-orm";
@@ -46,7 +46,11 @@ async function Guestbook() {
           <p>{entry.name}</p>
           {entry.url && <a href={entry.url} target="_blank" className="text-slate-700 dark:text-slate-300 hover:text-sky-500"><u>link</u> <FontAwesomeIcon icon={faUpRightFromSquare} /></a>}
         </div>
-        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.body}</p>
+        <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg h-full">{entry.body}</p>
+        {entry.reply !== "" && <div className="flex flex-col gap-1 mt-1">
+          <h2><FontAwesomeIcon icon={faComment} /> nova replied:</h2>  
+          <p className="bg-slate-200 dark:bg-slate-900 p-1 rounded-lg">{entry.reply}</p>
+        </div>}
         <p className="text-slate-500 text-sm"><FontAwesomeIcon icon={faClock} /> <ClientTime date={new Date(entry.createdAt)} /></p>
       </div>)}
     </div>
