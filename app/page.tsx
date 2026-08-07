@@ -15,14 +15,14 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6">
-        <div className="flex flex-col gap-2 p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
-          <div className="flex flex-col">
+        <div className="flex flex-col p-4 bg-slate-300 dark:bg-slate-800 rounded-xl">
+          <div className="flex flex-col gap-1">
             <Image src={pfp} width={100} height={100} alt="my profile picture" className="rounded-xl" />
             <h1 className="text-2xl font-semibold flex items-center">hi, i&apos;m <p className="ml-1 bg-linear-to-br from-violet-300 to-violet-500 text-transparent bg-clip-text">nova</p>! (she/they)</h1>
           </div>
-          <div className="mt-1 gap-2">
+          <div className="gap-2">
             <p>i&apos;m a full stack dev, writer, and amateur photographer :3</p>
-            <div className="flex gap-2 justify-start text-xl">
+            <div className="flex gap-2 justify-start text-xl mt-1">
               <a href="mailto:nova@novatea.dev" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faEnvelope} /></a>
               <a href="https://github.com/aelithron" target="_blank" className="hover:text-sky-500"><FontAwesomeIcon icon={faGithub} /></a>
               <CopyButton text="aelithron" message="copied discord username!"><FontAwesomeIcon icon={faDiscord} /></CopyButton>

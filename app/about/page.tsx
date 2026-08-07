@@ -17,9 +17,9 @@ export default function Page() {
           <h2 className="text-xl font-semibold">fun facts about me</h2>
           <ul className="list-disc list-inside">
             <li>i&apos;m a minor (teenager)</li>
-            <li>i am transgender, more specifically transfeminine non-binary</li>
+            <li>i am transgender, more specifically transfeminine (MtF)</li>
             <li>i am omnisexual, with a preference for women and non-binary people. this is under the bi umbrella :3</li>
-            <li>my aesthetic is <a href="https://aesthetics.fandom.com/wiki/Soft_Girl" target="_blank" className="hover:text-sky-500 underline">soft girl</a></li>
+            <li>my aesthetic is <a href="https://aesthetics.fandom.com/wiki/Soft_Girl" target="_blank" className="hover:text-sky-500 underline">soft girl</a>!</li>
           </ul>
         </div>
         <div>
@@ -31,7 +31,7 @@ export default function Page() {
             <li>bigots</li>
             <li>ableists</li>
             <li>far-right/maga</li>
-            <li>creeps / predators</li>
+            <li>creeps/predators</li>
           </ul>
         </div>
         <div>
