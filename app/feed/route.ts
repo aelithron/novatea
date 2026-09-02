@@ -19,12 +19,12 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const feed = new Feed({
     id: "https://novatea.dev/",
     title: "nova's blog",
-    description: "my blog about random things (mainly tech)!",
+    description: "nova's blog about random, assorted things (mainly tech)!",
     link: "https://novatea.dev/blog",
     author: { name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" },
     copyright: `© nova ${new Date().getFullYear()}`,
     language: "en",
-    updated: data[0].publishedAt,
+    updated: (data[0] || { publishedAt: new Date() }).publishedAt,
     feedLinks: {
       atom: "https://novatea.dev/feed?type=atom",
       json: "https://novatea.dev/feed?type=json"
