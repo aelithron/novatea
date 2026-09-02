@@ -3,6 +3,8 @@ import { blogTable } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { Feed } from "feed";
+import { marked } from "marked";
+import sanitizeHTML from "sanitize-html";
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const type = req.nextUrl.searchParams.get("type") || "rss";
@@ -13,15 +15,20 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     console.warn(e);
     return NextResponse.json({ error: "read_failure", message: "an error occured while reading from the database!" }, { status: 500 });
   }
+  marked.use({ gfm: true, breaks: true });
   const feed = new Feed({
     id: "https://novatea.dev/",
     title: "nova's blog",
-    description: "my blog about random things (mainly tech)!",
+    description: "nova's blog about random, assorted things (mainly tech)!",
     link: "https://novatea.dev/blog",
     author: { name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" },
     copyright: `© nova ${new Date().getFullYear()}`,
     language: "en",
-    updated: data[0].publishedAt,
+    updated: (data[0] || { publishedAt: new Date() }).publishedAt,
+    feedLinks: {
+      atom: "https://novatea.dev/feed?type=atom",
+      json: "https://novatea.dev/feed?type=json"
+    }
   });
   for (const post of data) {
     feed.addItem({
@@ -30,7 +37,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       date: post.publishedAt,
       author: [{ name: "Nova", email: "nova@novatea.dev", link: "https://novatea.dev/" }],
       description: post.blurb,
-      content: (post.body.length < 1000 ? post.body : `${post.body.slice(0, 1000)}...`)
+      content: sanitizeHTML(await marked.parse(post.body))
     });
   }
   switch (type) {
@@ -39,7 +46,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     case "atom":
       return new NextResponse(feed.atom1(), { headers: { "Content-Type": "application/atom+xml" } });
     case "json":
-      return new NextResponse(feed.json1());
+      return new NextResponse(feed.json1(), { headers: { "Content-Type": "application/json" } });
     default:
       return NextResponse.json({ error: "invalid_type", message: "a 'type' parameter was provided, but was not valid!" })
   }
